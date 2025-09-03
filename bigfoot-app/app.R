@@ -10,15 +10,15 @@ ui <- fluidPage(
     width = 12,
     id = "primary_box",
     tabPanel(
-      value = "sightings",
-      h3(id = "nav_title", "Sightings"),
-      sightings_ui(id = "sightings")
+      value = "sightings_map",
+      h3(id = "nav_title", "Sightings Map"),
+      sightings_map_ui(id = "sightings_map")
     )
   )
 )
 
 server <- function(input, output) {
-  sightings_server(id = "sightings", parent = session)
+  sightings_map_server(id = "sightings_map", parent = session)
 }
 
 shinyApp(ui = ui, server = server)
