@@ -12,13 +12,34 @@ ui <- fluidPage(
     tabPanel(
       value = "sightings_map",
       h3(id = "nav_title", "Sightings Map"),
-      sightings_map_ui(id = "sightings_map")
+      fluidRow(
+        column(12,
+               wellPanel(
+                 selectInput("test",
+                             "Test",
+                             choices = 1:5)
+               )
+        )
+      ),
+      div(style = "padding: 0px 0px; margin-top:-3em",
+          fluidRow(
+            column(12,
+                   h3(htmlOutput("test2")),
+                   br(),
+                   leafletOutput("map"))
+          )
+      )
     )
   )
 )
 
 server <- function(input, output) {
-  sightings_map_server(id = "sightings_map", parent = session)
+
+  output$map <- renderLeaflet({
+    leaflet(sightings_data) |>
+      addTiles() |>
+      addMarkers(lng = ~longitude, lat = ~latitude, popup = ~County)
+  })
 }
 
 shinyApp(ui = ui, server = server)
