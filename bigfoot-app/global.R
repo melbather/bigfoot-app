@@ -8,6 +8,7 @@ library(stringr)
 library(leaflet)
 library(sf)
 library(tidyr)
+library(gfonts)
 # Web scraping libraries
 library(rvest)
 library(httr2)
@@ -27,3 +28,14 @@ sightings_data <- html_table(page)[[1]] |>
                        names = c("latitude", "longitude")) |> 
   mutate(latitude = as.numeric(latitude),
          longitude = as.numeric(longitude))
+
+# Get decades in data ----------------------------------------------------------
+lowest_decade <- min(as.numeric(sightings_data$Year), 
+                     na.rm = TRUE) - min(as.numeric(sightings_data$Year), 
+                                         na.rm = TRUE)%%10
+highest_decade <- max(as.numeric(sightings_data$Year), 
+                      na.rm = TRUE) - max(as.numeric(sightings_data$Year), 
+                                          na.rm = TRUE)%%10
+all_decades <- seq(lowest_decade, highest_decade, by = 10)
+
+

@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
+
+* {
+  font-family: "Luckiest Guy";
+  color: #D76E28;
+}
+
+#title {
+  color: white;
+  text-align: center;
+}
+
+body {
+  --background-color: #5a9e52;
+    background-image: url(background.jpg);
+}
