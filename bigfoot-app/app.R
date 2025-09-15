@@ -6,8 +6,9 @@ ui <- fluidPage(
     includeCSS("www/style.css")
   ),
   titlePanel(div(id = "title",
-                 img(src = "bigfoot-icon.png"), 
-                 "USA Bigfoot Sightings Map")),
+                 img(src = "bigfoot-icon.png", height = "10%", width = "10%"), 
+                 "USA Bigfoot Sightings Map",
+                 img(src = "bigfoot-icon.png", height = "10%", width = "10%"))),
   sidebarLayout(
     sidebarPanel(
       selectInput("decade_filter",

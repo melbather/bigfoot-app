@@ -11,6 +11,6 @@
 }
 
 body {
-  --background-color: #5a9e52;
     background-image: url(background.jpg);
+    background-size: cover;
 }
