@@ -1,4 +1,4 @@
-# Read in modules
+# Read in files
 source("global.R")
 
 ui <- fluidPage(
