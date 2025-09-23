@@ -7,7 +7,7 @@ ui <- fluidPage(
   ),
   titlePanel(div(id = "title",
                  img(src = "bigfoot-icon.png", height = "10%", width = "10%"), 
-                 "USA Bigfoot Sightings Map",
+                 "USA Bigfoot Sightings",
                  img(src = "bigfoot-icon.png", height = "10%", width = "10%"))),
   sidebarLayout(
     sidebarPanel(
@@ -17,7 +17,10 @@ ui <- fluidPage(
         )),
     mainPanel(
       leafletOutput("map"))
-    )
+    ),
+  div(id = "graph_section",
+      h2("Sightings over time"),
+      plotlyOutput("graph"))
 )
 
 server <- function(input, output) {
@@ -53,7 +56,24 @@ server <- function(input, output) {
                    iconWidth = 45, iconHeight = 45
                  ))
   })
+  
+  output$graph <- renderPlotly({
+    dat_agg <- sightings_data |> 
+      group_by(Year) |> 
+      summarise(`Number of sightings` = n())
+      
+    p <- ggplot(dat_agg, 
+                aes(Year, `Number of sightings`, group=1)) +
+      geom_point(colour = "#D76E28") +
+      geom_line(colour = "#D76E28") +
+      scale_x_discrete(breaks = all_decades, labels = all_decades)
+    
+    ggplotly(p)
+  })
+  
 }
+
+
 
 shinyApp(ui = ui, server = server)
 
