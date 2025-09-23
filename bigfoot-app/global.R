@@ -23,12 +23,12 @@ sightings_data <- html_table(page)[[1]] |>
          longitude = as.numeric(longitude))
 
 # Get decades in data ----------------------------------------------------------
-lowest_decade <- min(as.numeric(sightings_data$Year), 
-                     na.rm = TRUE) - min(as.numeric(sightings_data$Year), 
-                                         na.rm = TRUE)%%10
-highest_decade <- max(as.numeric(sightings_data$Year), 
-                      na.rm = TRUE) - max(as.numeric(sightings_data$Year), 
-                                          na.rm = TRUE)%%10
+years <- as.numeric(sightings_data$Year)
+year_range <- range(years, na.rm=TRUE)
+
+lowest_decade <- floor(year_range[1]/10)*10
+highest_decade <- floor(year_range[2]/10)*10
+
 all_decades <- seq(lowest_decade, highest_decade, by = 10)
 
 
