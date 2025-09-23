@@ -66,7 +66,8 @@ server <- function(input, output) {
                 aes(Year, `Number of sightings`, group=1)) +
       geom_point(colour = "#D76E28") +
       geom_line(colour = "#D76E28") +
-      scale_x_discrete(breaks = all_decades, labels = all_decades)
+      scale_x_discrete(breaks = all_decades, labels = all_decades) +
+      theme_minimal()
     
     ggplotly(p)
   })
