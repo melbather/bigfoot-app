@@ -8,7 +8,8 @@ ui <- fluidPage(
   titlePanel(div(id = "title",
                  img(src = "bigfoot-icon.png", height = "10%", width = "10%"), 
                  "USA Bigfoot Sightings",
-                 img(src = "bigfoot-icon.png", height = "10%", width = "10%"))),
+                 img(src = "bigfoot-icon.png", height = "10%", width = "10%")),
+             windowTitle = "USA Bigfoot Sightings"),
   sidebarLayout(
     sidebarPanel(
       selectInput("decade_filter",
